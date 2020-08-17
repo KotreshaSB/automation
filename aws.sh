@@ -5,6 +5,8 @@ aws ec2 run-instances \
     --security-group-ids sg-0219d74c4c801bcc9 \
     --associate-public-ip-address \
     --key-name EC2 \
-    --region us-east-1 
+    --region us-east-1 aws ec2 describe-instances
+aws ec2 describe-instances
+    
     
     
