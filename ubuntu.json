@@ -1,0 +1,53 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Description" : "A sample template",
+  "Resources" : {
+    "MyEC2Instance" : {
+      "Type" : "AWS::EC2::Instance",
+      "Mappings" : {
+        "ImageId" : "ami-0ac80df6eff0e70b5",
+        "InstanceType" : "t2.micro",
+        "KeyName" : "EC2",
+        "BlockDeviceMappings" : [
+          {
+            "DeviceName" : "/dev/sda1",
+            "Ebs" : {
+              "VolumeType" : "gp2",
+              
+              "DeleteOnTermination" : "false",
+              "VolumeSize" : "10"
+            }
+           
+          }
+        ]
+      }
+    }
+  }
+},
+"Resources": {
+        "WebServerInstance": {
+            "Type": "AWS::EC2::Instance",
+            "Metadata": {
+                "AWS::CloudFormation::Init": {
+                    "configSets": {
+                        "InstallAndRun": [
+                            "Install",
+                            "Configure"
+                        ]
+                    },
+                    "Install": {
+                        "packages": {
+                            "apt": {
+                                "mysql": [],
+                                "mysql-server": [],
+                                "mysql-libs": [],
+                                "httpd": [],
+                                "php": [],
+                                "php-mysql": []
+                            }
+                        },
+                    }
+                }
+            }
+        }
+}
