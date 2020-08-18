@@ -5,7 +5,8 @@ aws ec2 run-instances \
     --security-group-ids sg-0219d74c4c801bcc9 \
     --associate-public-ip-address \
     --key-name EC2 \
-    --region us-east-1 
-    
+    --region us-east-1
+    ip=`aws ec2 describe-instances  --query 'sort_by(Reservations[].Instances[], &LaunchTime)[:-1].[InstanceId,PublicIpAddress,LaunchTime]' --output text | tail -1 | awk '{ print  $2 }'`
+    ssh ubuntu@$ip
     
     
