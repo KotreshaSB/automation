@@ -6,7 +6,7 @@ aws ec2 run-instances \
     --associate-public-ip-address \
     --key-name EC2 \
     --region us-east-1
-    ip=`aws ec2 describe-instances  --query "Reservations[*].Instances[*].PublicIpAddress" --output=text | tail -1`
+    ip=`aws ec2 describe-instances --region us-east-1 --query "Reservations[*].Instances[*].PublicIpAddress" --output=text | tail -1`
     ssh ubuntu@$ip
     
     
